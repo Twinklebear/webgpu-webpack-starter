@@ -3,7 +3,6 @@ const path = require("path");
 
 module.exports = {
     entry: "./src/app.js",
-    // You can change these to production when you're going to deploy your app
     mode: "development",
     output: {
         filename: "main.js",

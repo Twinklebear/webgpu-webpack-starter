@@ -20,13 +20,14 @@ npm run serve
 
 Where you should see the page shown below.
 
-To deploy your application, change the `mode` in `webpack.config.js` to `production` and run
+To deploy your application, run:
 
 ```
-npm run build
+npm run deploy
 ```
 
-Then you can copy the content of the `dist/` directory to your webserver.
+Then you can copy the content of the `dist/` directory to your webserver. You can build a development
+distribution by running `npm run build`.
 
 If everything's working you should see this page in your browser when you run the application:
 
