@@ -1,6 +1,6 @@
 # WebGPU Webpack Starter
 
-A starter template for WebGPU development that uses [webpack](https://webpack.js.org/) to build the code
+A starter template for [WebGPU](https://gpuweb.github.io/gpuweb/) development that uses [webpack](https://webpack.js.org/) to build the code
 and manage dependencies. You'll also need [node.js](https://nodejs.org/) installed for package management
 and running tasks.
 
