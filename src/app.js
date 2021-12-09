@@ -98,7 +98,7 @@ import shaderCode from "./triangle.wgsl";
     });
 
     var renderPassDesc = {
-        colorAttachments: [{view: undefined, loadValue: [0.3, 0.3, 0.3, 1]}],
+        colorAttachments: [{view: undefined, loadValue: [0.3, 0.3, 0.3, 1], storeOp: "store"}],
         depthStencilAttachment: {
             view: depthTexture.createView(),
             depthLoadValue: 1.0,
