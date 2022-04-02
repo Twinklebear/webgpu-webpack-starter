@@ -98,12 +98,14 @@ import shaderCode from "./triangle.wgsl";
     });
 
     var renderPassDesc = {
-        colorAttachments: [{view: undefined, loadValue: [0.3, 0.3, 0.3, 1], storeOp: "store"}],
+        colorAttachments: [{view: undefined, loadOp: "clear", clearValue: [0.3, 0.3, 0.3, 1], storeOp: "store"}],
         depthStencilAttachment: {
             view: depthTexture.createView(),
-            depthLoadValue: 1.0,
+            depthLoadOp: "clear",
+            depthClearValue: 1.0,
             depthStoreOp: "store",
-            stencilLoadValue: 0,
+            stencilLoadOp: "clear",
+            stencilClearValue: 0,
             stencilStoreOp: "store"
         }
     };
@@ -130,7 +132,7 @@ import shaderCode from "./triangle.wgsl";
         renderPass.setVertexBuffer(0, dataBuf);
         renderPass.draw(3, 1, 0, 0);
 
-        renderPass.endPass();
+        renderPass.end();
         device.queue.submit([commandEncoder.finish()]);
     }
 })();
