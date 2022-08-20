@@ -12,7 +12,7 @@ struct VertexOutput {
     @location(0) color: float4,
 };
 
-@stage(vertex)
+@vertex
 fn vertex_main(vert: VertexInput) -> VertexOutput {
     var out: VertexOutput;
     out.color = vert.color;
@@ -20,7 +20,7 @@ fn vertex_main(vert: VertexInput) -> VertexOutput {
     return out;
 };
 
-@stage(fragment)
+@fragment
 fn fragment_main(in: VertexOutput) -> @location(0) float4 {
     return float4(in.color);
 }
