@@ -123,14 +123,6 @@ import shaderCode from "./triangle.wgsl";
     };
     requestAnimationFrame(animationFrame);
 
-    // Workaround for D3D12 resource transition bug
-    // https://bugs.chromium.org/p/dawn/issues/detail?id=1517
-    {
-        var commandEncoder = device.createCommandEncoder();
-        device.queue.submit([commandEncoder.finish()]);
-        await device.queue.onSubmittedWorkDone();
-    }
-
     // Render!
     while (true) {
         await animationFrame();
