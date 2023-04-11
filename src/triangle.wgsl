@@ -1,5 +1,5 @@
 // This type definition is just to make typing a bit easier
-type float4 = vec4<f32>;
+alias float4 = vec4<f32>;
 
 struct VertexInput {
     @location(0) position: float4,

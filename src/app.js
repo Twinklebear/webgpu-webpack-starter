@@ -18,21 +18,18 @@ import shaderCode from "./triangle.wgsl";
 
     // Setup shader modules
     var shaderModule = device.createShaderModule({code: shaderCode});
-    // This API is only available in Chrome right now
-    if (shaderModule.compilationInfo) {
-        var compilationInfo = await shaderModule.compilationInfo();
-        if (compilationInfo.messages.length > 0) {
-            var hadError = false;
-            console.log("Shader compilation log:");
-            for (var i = 0; i < compilationInfo.messages.length; ++i) {
-                var msg = compilationInfo.messages[i];
-                console.log(`${msg.lineNum}:${msg.linePos} - ${msg.message}`);
-                hadError = hadError || msg.type == "error";
-            }
-            if (hadError) {
-                console.log("Shader failed to compile");
-                return;
-            }
+    var compilationInfo = await shaderModule.getCompilationInfo();
+    if (compilationInfo.messages.length > 0) {
+        var hadError = false;
+        console.log("Shader compilation log:");
+        for (var i = 0; i < compilationInfo.messages.length; ++i) {
+            var msg = compilationInfo.messages[i];
+            console.log(`${msg.lineNum}:${msg.linePos} - ${msg.message}`);
+            hadError = hadError || msg.type == "error";
+        }
+        if (hadError) {
+            console.log("Shader failed to compile");
+            return;
         }
     }
 
@@ -43,12 +40,12 @@ import shaderCode from "./triangle.wgsl";
 
     // Interleaved positions and colors
     new Float32Array(dataBuf.getMappedRange()).set([
-        1,  -1, 0, 1,  // position
-        1,  0,  0, 1,  // color
+        1, -1, 0, 1,  // position
+        1, 0, 0, 1,  // color
         -1, -1, 0, 1,  // position
-        0,  1,  0, 1,  // color
-        0,  1,  0, 1,  // position
-        0,  0,  1, 1,  // color
+        0, 1, 0, 1,  // color
+        0, 1, 0, 1,  // position
+        0, 0, 1, 1,  // color
     ]);
     dataBuf.unmap();
 
@@ -115,7 +112,7 @@ import shaderCode from "./triangle.wgsl";
         }
     };
 
-    var animationFrame = function() {
+    var animationFrame = function () {
         var resolve = null;
         var promise = new Promise(r => resolve = r);
         window.requestAnimationFrame(resolve);
